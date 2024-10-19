@@ -1,4 +1,4 @@
--- Script that creates a stored procedure AddBonus 
+-- Script that creates a stored procedure AddBonus
 -- that adds a new correction for a student.
 DELIMITER $$ ;
 CREATE PROCEDURE AddBonus(
@@ -8,9 +8,9 @@ CREATE PROCEDURE AddBonus(
 )
 BEGIN
 	IF NOT EXISTS(SELECT name FROM project WHERE name=project_name) THEN
-		INSERT INTO projects (name) VALUES (project_name);
+		INSERT INTO project (name) VALUES (project_name);
 	END IF;
 	INSERT INTO corrections (user_id, project_id, score)
-	VALUES (user_id, (SELECT id from projects WHERE name=project_name), score);
+	VALUES (user_id (SELECT id from projects WHERE name=project_name), score);
 END;$$
 DELIMITER ;
